@@ -1,30 +1,39 @@
 package com.cgi.model;
 
-public class Category {
+import java.util.Collection;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Category {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected int idCat;
 	protected String name;
+	
+	@OneToMany(mappedBy="category")
+	private Collection<Idea> ideas;
 
-	public Category(int idCat, String name) {
+	public Category(int idCat, String name, Collection<Idea> ideas) {
 		super();
 		this.idCat = idCat;
 		this.name = name;
+		this.ideas = ideas;
 	}
 
-	public void createCat() {
-
+	public Category() {
+		super();
 	}
+	
+	
 
-	public void readCat() {
-
-	}
-
-	public void updateCat() {
-
-	}
-
-	public void deleteCat() {
-
+	@Override
+	public String toString() {
+		return "Category [idCat=" + idCat + ", name=" + name + ", ideas=" + ideas + "]";
 	}
 
 	public int getIdCat() {
@@ -42,5 +51,15 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Collection<Idea> getIdeas() {
+		return ideas;
+	}
+
+	public void setIdeas(Collection<Idea> ideas) {
+		this.ideas = ideas;
+	}
+	
+
 
 }

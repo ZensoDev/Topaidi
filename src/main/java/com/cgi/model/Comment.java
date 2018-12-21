@@ -1,65 +1,124 @@
 package com.cgi.model;
 
+import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Comment {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected int idCom;
-	protected Member member;
+	
+	@ManyToOne
+	@JoinColumn(name="IDEA_ID")
 	protected Idea idea;
+	
+	@ManyToOne
+	@JoinColumn(name="MEMBER_ID")
+	protected Member member;
+	
+	@ManyToMany
+	@JoinTable( name="COMMENT_MEMBER",
+	joinColumns	=@JoinColumn(name="COMMENT_ID"	),
+	inverseJoinColumns	=@JoinColumn(name=	"MEMBER_ID"))
+	private Collection<Member> members;
+	
 	protected Date date;
 	protected String text;
 	
-	public Comment(int idCom, int idMember, int idIdea, Date date, String text) {
+	
+	
+	public Comment(int idCom, Idea idea, Member member, Collection<Member> members, Date date, String text) {
 		super();
 		this.idCom = idCom;
-		this.member = new Member(idMember);
-		this.idea = new Idea(idIdea);
+		this.idea = idea;
+		this.member = member;
+		this.members = members;
 		this.date = date;
 		this.text = text;
 	}
+
+
+	public Comment() {
+		super();
+	}
+
+
+	@Override
+	public String toString() {
+		return "Comment [idCom=" + idCom + ", idea=" + idea + ", member=" + member + ", members=" + members + ", date="
+				+ date + ", text=" + text + "]";
+	}
+
 
 	public int getIdCom() {
 		return idCom;
 	}
 
+
 	public void setIdCom(int idCom) {
 		this.idCom = idCom;
 	}
 
-	public Member getMember() {
-		return member;
-	}
-
-	public void setMember(Member member) {
-		this.member = member;
-	}
 
 	public Idea getIdea() {
 		return idea;
 	}
 
+
 	public void setIdea(Idea idea) {
 		this.idea = idea;
 	}
+
+
+	public Member getMember() {
+		return member;
+	}
+
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+
+	public Collection<Member> getMembers() {
+		return members;
+	}
+
+
+	public void setMembers(Collection<Member> members) {
+		this.members = members;
+	}
+
 
 	public Date getDate() {
 		return date;
 	}
 
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 
 	public String getText() {
 		return text;
 	}
 
+
 	public void setText(String text) {
 		this.text = text;
 	}
-	
-	
-	
+
 
 }

@@ -1,59 +1,88 @@
 package com.cgi.model;
 
+import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.cgi.enumeration.Vote;
+
+@Entity
 public class Idea {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int idIdea;
-	protected Category category;
+
+	@ManyToOne
+	@JoinColumn(name = "MEMBER_ID")
 	protected Member member;
+
+	@ManyToOne
+	@JoinColumn(name = "CAT_ID")
+	protected Category category;
+
+	@OneToMany(mappedBy = "idea")
+	private Collection<Comment> comments;
+
+	@ManyToMany
+	@JoinTable(name = "IDEA_MEMBER", 
+	joinColumns = @JoinColumn(name = "IDEA_ID"), 
+	inverseJoinColumns = @JoinColumn(name = "MEMBER_ID"))
+	
+	private Collection<Member> members;
+
 	protected String title;
 	protected String photo;
 	protected String description;
 	protected boolean state;
 	protected Date date;
+	protected Vote vote;
+
 	
-	public Idea(int idIdea, int idMember, Category category, String title, String photo, String description, boolean state,
-			Date date) {
+
+	public Idea(int idIdea, Member member, Category category, Collection<Comment> comments, Collection<Member> members,
+			String title, String photo, String description, boolean state, Date date, Vote vote) {
 		super();
 		this.idIdea = idIdea;
-		this.member = new Member(idMember);//composition
+		this.member = member;
 		this.category = category;
+		this.comments = comments;
+		this.members = members;
 		this.title = title;
 		this.photo = photo;
 		this.description = description;
 		this.state = state;
 		this.date = date;
+		this.vote = vote;
 	}
-	
+
 	public Idea(int idIdea) {
-		this.idIdea=idIdea;
+		this.idIdea = idIdea;
 	}
 	
-	public void displayIdea() {
-		
-	}
-	
-	public void createIdea() {
-		
-	}
 
-	public void readIdea() {
+	public Idea() {
+		super();
+	}
+	
 
-	}
-	
-	public void updateIdea() {
-		
-	}
-	
-	public void deleteIdea() {
-		
-	}
-	
 	@Override
 	public String toString() {
-		return "Idea [idIdea=" + idIdea + ", category=" + category + ", member=" + member + ", title=" + title
-				+ ", photo=" + photo + ", description=" + description + ", state=" + state + ", date=" + date + "]";
+		return "Idea [idIdea=" + idIdea + ", member=" + member + ", category=" + category + ", comments=" + comments
+				+ ", members=" + members + ", title=" + title + ", photo=" + photo + ", description=" + description
+				+ ", state=" + state + ", date=" + date + ", vote=" + vote + "]";
+	}
+
+	public void displayIdea() {
+
 	}
 
 	public int getIdIdea() {
@@ -64,6 +93,14 @@ public class Idea {
 		this.idIdea = idIdea;
 	}
 
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 	public Category getCategory() {
 		return category;
 	}
@@ -72,12 +109,20 @@ public class Idea {
 		this.category = category;
 	}
 
-	public Member getMember() {
-		return member;
+	public Collection<Comment> getComments() {
+		return comments;
 	}
 
-	public void setMember(Member member) {
-		this.member = member;
+	public void setComments(Collection<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public Collection<Member> getMembers() {
+		return members;
+	}
+
+	public void setMembers(Collection<Member> members) {
+		this.members = members;
 	}
 
 	public String getTitle() {
@@ -120,5 +165,15 @@ public class Idea {
 		this.date = date;
 	}
 
+	public Vote getVote() {
+		return vote;
+	}
 
+	public void setVote(Vote vote) {
+		this.vote = vote;
+	}
+
+	
+
+	
 }

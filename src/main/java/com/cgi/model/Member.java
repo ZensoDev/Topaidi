@@ -1,15 +1,34 @@
 package com.cgi.model;
 
-public class Member {
+import java.util.Collection;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Member {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected int idMember;
 	protected String loginMail;
 	protected String password;
 	protected String lastName;
 	protected String firstName;
 	protected boolean admin;
+	
+	@OneToMany(mappedBy="member")
+	private Collection<Idea> ideas;
+	
+	@OneToMany(mappedBy="member")
+	private Collection<Comment> comments;
+	
 
-	public Member(int idMember, String loginMail, String password, String lastName, String firstName, boolean admin) {
+
+	public Member(int idMember, String loginMail, String password, String lastName, String firstName, boolean admin,
+			Collection<Idea> ideas, Collection<Comment> comments) {
 		super();
 		this.idMember = idMember;
 		this.loginMail = loginMail;
@@ -17,10 +36,28 @@ public class Member {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.admin = admin;
+		this.ideas = ideas;
+		this.comments = comments;
 	}
 
 	public Member(int idMember) {
 		this.idMember = idMember;
+	}
+
+	public Member(String firstName) {
+		this.firstName = firstName;
+	}
+	public Member() {
+		super();
+	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Member [idMember=" + idMember + ", loginMail=" + loginMail + ", password=" + password + ", lastName="
+				+ lastName + ", firstName=" + firstName + ", admin=" + admin + ", ideas=" + ideas + ", comments="
+				+ comments + "]";
 	}
 
 	public void displayMember() {
@@ -29,28 +66,6 @@ public class Member {
 
 	public void sort() {
 
-	}
-
-	public void createMember() {
-
-	}
-
-	public void readMember() {
-
-	}
-
-	public void updateMember() {
-
-	}
-
-	public void deleteMember() {
-
-	}
-
-	@Override
-	public String toString() {
-		return "Member [idMember=" + idMember + ", loginMail=" + loginMail + ", password=" + password + ", lastName="
-				+ lastName + ", firstName=" + firstName + "]";
 	}
 
 	public int getIdMember() {
@@ -100,5 +115,22 @@ public class Member {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
+
+	public Collection<Idea> getIdeas() {
+		return ideas;
+	}
+
+	public void setIdeas(Collection<Idea> ideas) {
+		this.ideas = ideas;
+	}
+
+	public Collection<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Collection<Comment> comments) {
+		this.comments = comments;
+	}
+
 
 }
