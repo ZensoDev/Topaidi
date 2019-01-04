@@ -26,7 +26,7 @@ public class MemberDaoImplTest {
 		org.junit.Assert.assertTrue(l.size() > 0);
 	}
 
-	/*@Test
+	@Test
 	public void testFindByKey() {
 		List<Member> l = mDAO.findAll();
 		Member m = mDAO.findByKey(l.get(l.size() - 1).getIdMember());
@@ -54,7 +54,7 @@ public class MemberDaoImplTest {
 
 		Member mDb = mDAO.findByKey(m.getIdMember());
 
-		Assert.assertFalse(name == mDb.getFirstName());
+		Assert.assertFalse(name.equals(mDb.getFirstName()));
 	}
 
 	@Test
@@ -75,6 +75,6 @@ public class MemberDaoImplTest {
 		int size2 = mDAO.findAll().size();
 		org.junit.Assert.assertTrue(size2 < size1);
 	}
-	*/
+	
 
 }

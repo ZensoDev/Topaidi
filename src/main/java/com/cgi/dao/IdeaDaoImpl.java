@@ -10,6 +10,7 @@ import com.cgi.utils.Application;
 
 public class IdeaDaoImpl implements IdeaDao{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Idea> findAll() {
 		EntityManager em = null;
@@ -68,9 +69,8 @@ public class IdeaDaoImpl implements IdeaDao{
 			EntityManagerFactory emf = Application.getInstance().getEmf();
 			em = emf.createEntityManager();
 
-			Idea i = em.find(Idea.class, obj.getIdIdea());
 			em.getTransaction().begin();
-			em.merge(i);
+			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();

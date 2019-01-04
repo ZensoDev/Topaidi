@@ -24,6 +24,10 @@ public class Category {
 		this.name = name;
 		this.ideas = ideas;
 	}
+	public Category(int idCat) {
+		super();
+		this.idCat = idCat;
+	}
 
 	public Category() {
 		super();

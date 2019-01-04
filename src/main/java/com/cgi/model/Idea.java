@@ -63,6 +63,18 @@ public class Idea {
 		this.date = date;
 		this.vote = vote;
 	}
+	
+	public Idea(int idIdea, Member member, Category category, String title, String photo, String description, boolean state, Date date) {
+		super();
+		this.idIdea = idIdea;
+		this.member = member;
+		this.category = category;
+		this.title = title;
+		this.photo = photo;
+		this.description = description;
+		this.state = state;
+		this.date = date;
+	}
 
 	public Idea(int idIdea) {
 		this.idIdea = idIdea;
