@@ -13,7 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.cgi.enumeration.Vote;
+
 
 @Entity
 public class Idea {
@@ -44,12 +44,13 @@ public class Idea {
 	protected String description;
 	protected boolean state;
 	protected Date date;
-	protected Vote vote;
-
 	
-
+	@OneToMany(mappedBy = "idea")
+	protected Collection<Vote> votes;
+	
+	
 	public Idea(int idIdea, Member member, Category category, Collection<Comment> comments, Collection<Member> members,
-			String title, String photo, String description, boolean state, Date date, Vote vote) {
+			String title, String photo, String description, boolean state, Date date, Collection<Vote> votes) {
 		super();
 		this.idIdea = idIdea;
 		this.member = member;
@@ -61,9 +62,9 @@ public class Idea {
 		this.description = description;
 		this.state = state;
 		this.date = date;
-		this.vote = vote;
+		this.votes = votes;
 	}
-	
+
 	public Idea(int idIdea, Member member, Category category, String title, String photo, String description, boolean state, Date date) {
 		super();
 		this.idIdea = idIdea;
@@ -90,7 +91,7 @@ public class Idea {
 	public String toString() {
 		return "Idea [idIdea=" + idIdea + ", member=" + member + ", category=" + category + ", comments=" + comments
 				+ ", members=" + members + ", title=" + title + ", photo=" + photo + ", description=" + description
-				+ ", state=" + state + ", date=" + date + ", vote=" + vote + "]";
+				+ ", state=" + state + ", date=" + date + ", votes=" + votes + "]";
 	}
 
 	public void displayIdea() {
@@ -177,12 +178,12 @@ public class Idea {
 		this.date = date;
 	}
 
-	public Vote getVote() {
-		return vote;
+	public Collection<Vote> getVotes() {
+		return votes;
 	}
 
-	public void setVote(Vote vote) {
-		this.vote = vote;
+	public void setVotes(Collection<Vote> votes) {
+		this.votes = votes;
 	}
 
 	

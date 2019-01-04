@@ -1,6 +1,6 @@
 package com.cgi.enumeration;
 
-public enum Vote {
+public enum VoteEnum {
 	
 	
 	Top(1),
@@ -9,7 +9,7 @@ public enum Vote {
 	
 	private int mark;
 
-	private Vote(int mark) {
+	private VoteEnum(int mark) {
 		this.setMark(mark);
 	}
 

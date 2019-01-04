@@ -25,10 +25,12 @@ public class Member {
 	@OneToMany(mappedBy="member")
 	private Collection<Comment> comments;
 	
-
+	@OneToMany(mappedBy = "member")
+	protected Collection<Vote> votes;
+	
 
 	public Member(int idMember, String loginMail, String password, String lastName, String firstName, boolean admin,
-			Collection<Idea> ideas, Collection<Comment> comments) {
+			Collection<Idea> ideas, Collection<Comment> comments, Collection<Vote> votes) {
 		super();
 		this.idMember = idMember;
 		this.loginMail = loginMail;
@@ -38,6 +40,7 @@ public class Member {
 		this.admin = admin;
 		this.ideas = ideas;
 		this.comments = comments;
+		this.votes = votes;
 	}
 
 	public Member(int idMember) {
@@ -130,6 +133,14 @@ public class Member {
 
 	public void setComments(Collection<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public Collection<Vote> getVotes() {
+		return votes;
+	}
+
+	public void setVotes(Collection<Vote> votes) {
+		this.votes = votes;
 	}
 
 
