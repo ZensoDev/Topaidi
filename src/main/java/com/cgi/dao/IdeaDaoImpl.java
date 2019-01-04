@@ -45,7 +45,6 @@ public class IdeaDaoImpl implements IdeaDao{
 			em = emf.createEntityManager();
 
 			em.getTransaction().begin();
-
 			em.persist(obj);
 			em.getTransaction().commit();
 

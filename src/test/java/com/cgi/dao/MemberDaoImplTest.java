@@ -32,7 +32,7 @@ public class MemberDaoImplTest {
 		Member m = mDAO.findByKey(l.get(l.size() - 1).getIdMember());
 		org.junit.Assert.assertTrue(m.getIdMember() == l.get(l.size() - 1).getIdMember());
 	}
-	
+//	
 
 	@Test
 	public void testInsert() {

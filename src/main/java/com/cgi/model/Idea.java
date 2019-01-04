@@ -87,6 +87,10 @@ public class Idea {
 	}
 	
 
+	public Idea(String title) {
+		this.title = title;
+	}
+
 	@Override
 	public String toString() {
 		return "Idea [idIdea=" + idIdea + ", member=" + member + ", category=" + category + ", comments=" + comments

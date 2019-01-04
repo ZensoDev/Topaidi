@@ -54,6 +54,11 @@ public class Comment {
 	}
 
 
+	public Comment(String text) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	@Override
 	public String toString() {
 		return "Comment [idCom=" + idCom + ", idea=" + idea + ", member=" + member + ", members=" + members + ", date="

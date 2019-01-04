@@ -69,9 +69,8 @@ public class VoteDaoImpl implements VoteDao{
 			EntityManagerFactory emf = Application.getInstance().getEmf();
 			em = emf.createEntityManager();
 
-			Vote c = em.find(Vote.class, obj.getIdVote());
 			em.getTransaction().begin();
-			em.merge(c);
+			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();

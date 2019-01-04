@@ -68,9 +68,8 @@ public class MemberDaoImpl implements MemberDao{
 			EntityManagerFactory emf = Application.getInstance().getEmf();
 			em = emf.createEntityManager();
 
-			Member m = em.find(Member.class, obj.getIdMember());
 			em.getTransaction().begin();
-			em.merge(m);
+			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();

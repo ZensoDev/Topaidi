@@ -67,9 +67,8 @@ public class CommentDaoImpl implements CommentDao{
 			EntityManagerFactory emf = Application.getInstance().getEmf();
 			em = emf.createEntityManager();
 
-			Comment c = em.find(Comment.class, obj.getIdCom());
 			em.getTransaction().begin();
-			em.merge(c);
+			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();

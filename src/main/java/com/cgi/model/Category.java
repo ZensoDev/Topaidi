@@ -35,6 +35,10 @@ public class Category {
 	
 	
 
+	public Category(String name) {
+		// TODO Auto-generated constructor stub
+		this.name = name;
+	}
 	@Override
 	public String toString() {
 		return "Category [idCat=" + idCat + ", name=" + name + ", ideas=" + ideas + "]";
