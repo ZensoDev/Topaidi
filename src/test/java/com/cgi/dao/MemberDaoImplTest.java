@@ -13,11 +13,14 @@ import com.cgi.model.Member;
 public class MemberDaoImplTest {
 
 	MemberDaoImpl mDAO;
+	Member m1;
+	
 
 	@Before
 	public void init() {
 
 		mDAO = new MemberDaoImpl();
+		m1 = new Member("Pepe");
 	}
 
 	@Test
@@ -47,33 +50,38 @@ public class MemberDaoImplTest {
 	
 	@Test
 	public void testUpdate() {
-		Member m = mDAO.findAll().get(0);
+		
+		List<Member> l = mDAO.findAll();
+		mDAO.insert(m1);
+		Member m = mDAO.findByKey(l.get(l.size() - 1).getIdMember());
 		String name = m.getFirstName();
 		m.setFirstName("Dwarf");
 		mDAO.update(m);
 
 		Member mDb = mDAO.findByKey(m.getIdMember());
 
-		Assert.assertFalse(name.equals(mDb.getFirstName()));
+		Assert.assertFalse(m1.getFirstName().equals(mDb.getFirstName()));
 	}
 
 	@Test
 	public void testDelete() {
 		List<Member> l = mDAO.findAll();
+		mDAO.insert(m1);
 		int size1 = l.size();
 		Member m = mDAO.findByKey(l.get(l.size() - 1).getIdMember());
 		mDAO.delete(m);
 		int size2 = mDAO.findAll().size();
-		org.junit.Assert.assertTrue(size2 < size1);
+		org.junit.Assert.assertTrue(size2 == size1);
 	}
 
 	@Test
 	public void testDeleteByKey() {
 		List<Member> l = mDAO.findAll();
+		mDAO.insert(m1);
 		int size1 = l.size();
-		mDAO.deleteByKey(l.get(0).getIdMember());
+		mDAO.deleteByKey(l.get(l.size() - 1).getIdMember());
 		int size2 = mDAO.findAll().size();
-		org.junit.Assert.assertTrue(size2 < size1);
+		org.junit.Assert.assertTrue(size2 == size1);
 	}
 	
 
