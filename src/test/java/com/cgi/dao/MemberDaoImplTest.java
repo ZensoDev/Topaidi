@@ -14,26 +14,27 @@ public class MemberDaoImplTest {
 
 	MemberDaoImpl mDAO;
 	Member m1;
-	
 
 	@Before
 	public void init() {
 
 		mDAO = new MemberDaoImpl();
-		m1 = new Member("Pepe");
+		m1 = new Member("Pablo");
 	}
 
 	@Test
 	public void testFindAll() {
 		List<Member> l = mDAO.findAll();
-		org.junit.Assert.assertTrue(l.size() > 0);
+		mDAO.insert(m1);
+		org.junit.Assert.assertFalse(!l.isEmpty());
 	}
 
 	@Test
 	public void testFindByKey() {
 		List<Member> l = mDAO.findAll();
-		Member m = mDAO.findByKey(l.get(l.size() - 1).getIdMember());
-		org.junit.Assert.assertTrue(m.getIdMember() == l.get(l.size() - 1).getIdMember());
+		mDAO.insert(m1);
+		Member m = mDAO.findByKey(m1.getIdMember());
+		org.junit.Assert.assertTrue(m.getIdMember() == m1.getIdMember());
 	}
 //	
 
@@ -47,10 +48,9 @@ public class MemberDaoImplTest {
 		org.junit.Assert.assertTrue(size2 > size1);
 	}
 
-	
 	@Test
 	public void testUpdate() {
-		
+
 		List<Member> l = mDAO.findAll();
 		mDAO.insert(m1);
 		Member m = mDAO.findByKey(l.get(l.size() - 1).getIdMember());
@@ -77,12 +77,13 @@ public class MemberDaoImplTest {
 	@Test
 	public void testDeleteByKey() {
 		List<Member> l = mDAO.findAll();
-		mDAO.insert(m1);
 		int size1 = l.size();
-		mDAO.deleteByKey(l.get(l.size() - 1).getIdMember());
+		mDAO.insert(m1);
 		int size2 = mDAO.findAll().size();
-		org.junit.Assert.assertTrue(size2 == size1);
+		org.junit.Assert.assertFalse(size2 == size1);
+		mDAO.deleteByKey(m1.getIdMember());
+		org.junit.Assert.assertTrue(size1 == mDAO.findAll().size());
+		
 	}
-	
 
 }
