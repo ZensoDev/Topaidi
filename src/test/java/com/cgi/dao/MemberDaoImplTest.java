@@ -26,7 +26,7 @@ public class MemberDaoImplTest {
 	public void testFindAll() {
 		List<Member> l = mDAO.findAll();
 		mDAO.insert(m1);
-		org.junit.Assert.assertFalse(!l.isEmpty());
+		org.junit.Assert.assertFalse(!l.isEmpty()); // on vérifie si bien insert dans liste
 	}
 
 	@Test
