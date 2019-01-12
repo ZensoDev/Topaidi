@@ -36,7 +36,6 @@ public class Idea {
 	@JoinTable(name = "IDEA_MEMBER", 
 	joinColumns = @JoinColumn(name = "IDEA_ID"), 
 	inverseJoinColumns = @JoinColumn(name = "MEMBER_ID"))
-	
 	private Collection<Member> members;
 
 	protected String title;
