@@ -8,10 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -32,30 +32,33 @@ public class Idea {
 	@OneToMany(mappedBy = "idea")
 	private Collection<Comment> comments;
 
+<<<<<<< Updated upstream
 	@ManyToMany
 	@JoinTable(name = "IDEA_MEMBER", 
 	joinColumns = @JoinColumn(name = "IDEA_ID"), 
 	inverseJoinColumns = @JoinColumn(name = "MEMBER_ID"))
 	private Collection<Member> members;
 
+=======
+>>>>>>> Stashed changes
 	protected String title;
 	protected String photo;
 	protected String description;
 	protected boolean state;
+	
+//	@DateTimeFormat(pattern="dd-MM-yyyy")
 	protected Date date;
 	
 	@OneToMany(mappedBy = "idea")
 	protected Collection<Vote> votes;
 	
 	
-	public Idea(int idIdea, Member member, Category category, Collection<Comment> comments, Collection<Member> members,
-			String title, String photo, String description, boolean state, Date date, Collection<Vote> votes) {
+	public Idea(int idIdea, Member member, Category category, Collection<Comment> comments, String title, String photo, String description, boolean state, Date date, Collection<Vote> votes) {
 		super();
 		this.idIdea = idIdea;
 		this.member = member;
 		this.category = category;
 		this.comments = comments;
-		this.members = members;
 		this.title = title;
 		this.photo = photo;
 		this.description = description;
@@ -93,7 +96,7 @@ public class Idea {
 	@Override
 	public String toString() {
 		return "Idea [idIdea=" + idIdea + ", member=" + member + ", category=" + category + ", comments=" + comments
-				+ ", members=" + members + ", title=" + title + ", photo=" + photo + ", description=" + description
+				+ ", title=" + title + ", photo=" + photo + ", description=" + description
 				+ ", state=" + state + ", date=" + date + ", votes=" + votes + "]";
 	}
 
@@ -133,14 +136,7 @@ public class Idea {
 		this.comments = comments;
 	}
 
-	public Collection<Member> getMembers() {
-		return members;
-	}
-
-	public void setMembers(Collection<Member> members) {
-		this.members = members;
-	}
-
+	
 	public String getTitle() {
 		return title;
 	}

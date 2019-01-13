@@ -9,14 +9,7 @@ import javax.persistence.ManyToOne;
 
 import com.cgi.enumeration.VoteEnum;
 
-/**
- * @author HB
- *
- */
-/**
- * @author HB
- *
- */
+
 @Entity
 public class Vote {
 	@Id
