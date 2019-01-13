@@ -8,12 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-
 
 @Entity
 public class Idea {
@@ -32,28 +32,23 @@ public class Idea {
 	@OneToMany(mappedBy = "idea")
 	private Collection<Comment> comments;
 
-<<<<<<< Updated upstream
 	@ManyToMany
-	@JoinTable(name = "IDEA_MEMBER", 
-	joinColumns = @JoinColumn(name = "IDEA_ID"), 
-	inverseJoinColumns = @JoinColumn(name = "MEMBER_ID"))
+	@JoinTable(name = "IDEA_MEMBER", joinColumns = @JoinColumn(name = "IDEA_ID"), inverseJoinColumns = @JoinColumn(name = "MEMBER_ID"))
 	private Collection<Member> members;
 
-=======
->>>>>>> Stashed changes
 	protected String title;
 	protected String photo;
 	protected String description;
 	protected boolean state;
-	
-//	@DateTimeFormat(pattern="dd-MM-yyyy")
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	protected Date date;
-	
+
 	@OneToMany(mappedBy = "idea")
 	protected Collection<Vote> votes;
-	
-	
-	public Idea(int idIdea, Member member, Category category, Collection<Comment> comments, String title, String photo, String description, boolean state, Date date, Collection<Vote> votes) {
+
+	public Idea(int idIdea, Member member, Category category, Collection<Comment> comments, String title, String photo,
+			String description, boolean state, Date date, Collection<Vote> votes) {
 		super();
 		this.idIdea = idIdea;
 		this.member = member;
@@ -67,7 +62,8 @@ public class Idea {
 		this.votes = votes;
 	}
 
-	public Idea(int idIdea, Member member, Category category, String title, String photo, String description, boolean state, Date date) {
+	public Idea(int idIdea, Member member, Category category, String title, String photo, String description,
+			boolean state, Date date) {
 		super();
 		this.idIdea = idIdea;
 		this.member = member;
@@ -82,12 +78,10 @@ public class Idea {
 	public Idea(int idIdea) {
 		this.idIdea = idIdea;
 	}
-	
 
 	public Idea() {
 		super();
 	}
-	
 
 	public Idea(String title) {
 		this.title = title;
@@ -96,8 +90,8 @@ public class Idea {
 	@Override
 	public String toString() {
 		return "Idea [idIdea=" + idIdea + ", member=" + member + ", category=" + category + ", comments=" + comments
-				+ ", title=" + title + ", photo=" + photo + ", description=" + description
-				+ ", state=" + state + ", date=" + date + ", votes=" + votes + "]";
+				+ ", title=" + title + ", photo=" + photo + ", description=" + description + ", state=" + state
+				+ ", date=" + date + ", votes=" + votes + "]";
 	}
 
 	public void displayIdea() {
@@ -136,7 +130,6 @@ public class Idea {
 		this.comments = comments;
 	}
 
-	
 	public String getTitle() {
 		return title;
 	}
@@ -185,7 +178,4 @@ public class Idea {
 		this.votes = votes;
 	}
 
-	
-
-	
 }
