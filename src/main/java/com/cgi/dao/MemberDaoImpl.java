@@ -4,148 +4,50 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
+import org.springframework.stereotype.Repository;
+
+import com.cgi.model.Comment;
 import com.cgi.model.Member;
 import com.cgi.utils.Application;
 
+@Transactional
+@Repository
 public class MemberDaoImpl implements MemberDao{
 
+	@PersistenceContext
+	EntityManager em;
+	
 	@Override
 	public List<Member> findAll() {
-		EntityManager em = null;
-
-		EntityManagerFactory emf = Application.getInstance().getEmf();
-		em = emf.createEntityManager();
-
-		List<Member> l = em.createQuery("select m from Member m").getResultList();
-
-		return l;
-
+		return em.createQuery("from Member").getResultList();
 	}
 
 	@Override
 	public Member findByKey(Integer key) {
-		EntityManager em = null;
-
-		EntityManagerFactory emf = Application.getInstance().getEmf();
-		em = emf.createEntityManager();
-
-		Member m = em.find(Member.class, key);
-
-		return m;
+		return em.find(Member.class, key);
 	}
 
 	@Override
 	public void insert(Member obj) {
-		EntityManager em = null;
-
-		try {
-			EntityManagerFactory emf = Application.getInstance().getEmf();
-			em = emf.createEntityManager();
-
-			em.getTransaction().begin();
-
-			em.persist(obj);
-			em.getTransaction().commit();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (em.getTransaction() != null) {
-				em.getTransaction().rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
+		em.persist(obj);
 	}
 
 	@Override
 	public void update(Member obj) {
-		EntityManager em = null;
-
-		try {
-			EntityManagerFactory emf = Application.getInstance().getEmf();
-			em = emf.createEntityManager();
-
-			em.getTransaction().begin();
-			em.merge(obj);
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (em.getTransaction() != null) {
-				em.getTransaction().rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
+		em.merge(obj);
 	}
 
 	@Override
 	public void delete(Member obj) {
-		EntityManager em = null;
-		try {
-			EntityManagerFactory emf = Application.getInstance().getEmf();
-			em = emf.createEntityManager();
-
-			Member m = em.find(Member.class, obj.getIdMember());
-
-			if (m != null) {
-				System.out.println("found");
-				em.getTransaction().begin();
-				em.remove(m);
-				em.getTransaction().commit();
-				System.out.println("removed");
-
-			} else {
-				System.out.println("not found");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (em.getTransaction() != null) {
-				em.getTransaction().rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
-
+		Member m =em.merge(obj);
+		em.remove(m);
 	}
 
 	@Override
 	public void deleteByKey(Integer key) {
-		EntityManager em = null;
-
-		try {
-			EntityManagerFactory emf = Application.getInstance().getEmf();
-			em = emf.createEntityManager();
-
-			Member m = em.find(Member.class, key);
-
-			if (m != null) {
-				System.out.println("found");
-				em.getTransaction().begin();
-				em.remove(m);
-				em.getTransaction().commit();
-				System.out.println("removed");
-
-			} else {
-				System.out.println("not found");
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (em.getTransaction() != null) {
-				em.getTransaction().rollback();
-			}
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-
-		}
+		em.remove(em.find(Member.class, key));
 	}
 }
