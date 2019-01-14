@@ -3,8 +3,8 @@ package com.cgi.enumeration;
 public enum VoteEnum {
 	
 	
-	Top(1),
-	Flop(-1),
+	Top(2),
+	Flop(1),
 	Default(0);
 	
 	private int mark;
