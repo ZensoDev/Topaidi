@@ -8,7 +8,10 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
@@ -22,21 +25,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class JpaConfig {
 
 	@Bean
-
 	public DataSource dataSource() {
-
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://localhost/topaididsm");
 		dataSource.setUsername("topaidi");
 		dataSource.setPassword("topaidi123");
-
 		return dataSource;
 
 	}
 
 	@Bean
-
 	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(emf);
@@ -45,9 +44,7 @@ public class JpaConfig {
 	}
 
 	@Bean
-
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		vendorAdapter.setDatabase(Database.POSTGRESQL);
 		vendorAdapter.setGenerateDdl(true);
@@ -56,20 +53,17 @@ public class JpaConfig {
 		em.setPackagesToScan("com.cgi.model");
 		em.setJpaVendorAdapter(vendorAdapter);
 		em.setJpaProperties(additionalProperties());
-
 		return em;
 
 	}
-
+	
 	private Properties additionalProperties() {
-
 		Properties properties = new Properties();
-
 		properties.setProperty("hibernate.hbm2ddl.auto", "validate");
 		properties.setProperty("hibernate.hbm2ddl.import_files", "META-INF/data.sql");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+		properties.setProperty("hibernate.hbm2ddl.import_files", "META-INF/views.sql");
 		properties.setProperty("hibernate.show_sql", "true");
-
 		return properties;
 
 	}
