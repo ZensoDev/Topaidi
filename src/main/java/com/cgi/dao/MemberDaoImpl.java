@@ -50,4 +50,9 @@ public class MemberDaoImpl implements MemberDao{
 	public void deleteByKey(Integer key) {
 		em.remove(em.find(Member.class, key));
 	}
+
+	@Override
+	public Member findByMail(String loginMail) {
+		return em.find(Member.class, loginMail);
+	}
 }

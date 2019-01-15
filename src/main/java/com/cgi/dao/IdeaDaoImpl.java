@@ -21,7 +21,7 @@ public class IdeaDaoImpl implements IdeaDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Idea> findAll() {
-		return em.createQuery("select a from Idea a").getResultList();
+		return em.createQuery("select a from Idea a order by date").getResultList();
 	}
 
 	@Override

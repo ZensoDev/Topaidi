@@ -41,8 +41,10 @@ public class Category {
 	}
 	@Override
 	public String toString() {
-		return "Category [idCat=" + idCat + ", name=" + name + ", ideas=" + ideas + "]";
+		
+		return getName();
 	}
+	
 
 	public int getIdCat() {
 		return idCat;

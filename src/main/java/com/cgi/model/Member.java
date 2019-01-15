@@ -3,6 +3,7 @@ package com.cgi.model;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ public class Member {
 	protected String firstName;
 	protected boolean admin;
 	
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member", fetch=FetchType.EAGER)
 	private Collection<Idea> ideas;
 	
 	@OneToMany(mappedBy="member")
