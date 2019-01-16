@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Comment {
 	
@@ -33,6 +35,7 @@ public class Comment {
 	inverseJoinColumns	=@JoinColumn(name=	"MEMBER_ID"))
 	private Collection<Member> members;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	protected Date date;
 	protected String text;
 	
