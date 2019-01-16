@@ -33,7 +33,7 @@ public class VoteDaoImpl implements VoteDao{
 	 * 
 	 * */
 	public List<Idea> topsClassement() {
-		return em.createQuery("from top t").getResultList();
+		return em.createQuery("select t from top t").getResultList();
 	}
 	
 	
@@ -41,8 +41,9 @@ public class VoteDaoImpl implements VoteDao{
 	 * Method to obtain the view in database to display the Buzz classment
 	 * 
 	 * */
-	public List<Vote> buzzClassement() {
-		return em.createQuery("select * from buzz").getResultList();
+	@SuppressWarnings("unchecked")
+	public List<Idea> buzzClassement() {
+		return em.createQuery("select b from buzz b").getResultList();
 	}
 
 

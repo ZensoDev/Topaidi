@@ -35,6 +35,7 @@ public class Vote {
 		this.idea = idea;
 	}
 
+	
 
 	public Vote() {
 		super();
