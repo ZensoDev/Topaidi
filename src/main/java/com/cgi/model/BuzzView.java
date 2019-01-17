@@ -11,13 +11,15 @@ import org.hibernate.annotations.Subselect;
 @Subselect(
 	    "SELECT " +
 	    "    buzz.idea_id as idea_iD, " +
-	    "    buzz.count as NB_Votes " +
+	    "    buzz.count as NB_VotesTotal " +
 	    "FROM "+"buzz"
 	)
 public class BuzzView {
 	
 	@Id
 	private int idea_iD;
+	
+	private int NB_VotesTotal;
 	
 	public int getIdea_iD() {
 		return idea_iD;
@@ -27,18 +29,13 @@ public class BuzzView {
 		this.idea_iD = idea_iD;
 	}
 
-	public int getNB_Votes() {
-		return NB_Votes;
+	public int getNB_VotesTotal() {
+		return NB_VotesTotal;
 	}
 
-	public void setNB_Votes(int nB_Votes) {
-		NB_Votes = nB_Votes;
+	public void setNB_VotesTotal(int nB_VotesTotal) {
+		NB_VotesTotal = nB_VotesTotal;
 	}
 
-	private int NB_Votes;
-
-	@Override
-	public String toString() {
-		return "BuzzView [idea_ID=" + idea_iD + ", NB_Vote=" + NB_Votes + "]";
-	}
+	
 }

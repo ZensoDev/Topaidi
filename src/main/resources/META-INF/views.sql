@@ -1,2 +1,3 @@
-CREATE VIEW buzz AS SELECT DISTINCT Idea_id, COUNT(VoteEnum) FROM vote WHERE VoteEnum = 2 OR VoteEnum = 1 GROUP BY Idea_id ORDER BY COUNT(VoteEnum)  DESC LIMIT 10;
-CREATE VIEW top AS SELECT DISTINCT Idea_id, COUNT(VoteEnum) FROM vote WHERE VoteEnum = 2 GROUP BY Idea_id ORDER BY COUNT(VoteEnum) DESC LIMIT 10;
+CREATE VIEW buzz AS SELECT DISTINCT Idea_id, COUNT(VoteEnum) as NB_votes FROM vote WHERE VoteEnum = 0 OR VoteEnum = 1 GROUP BY Idea_id ORDER BY COUNT(VoteEnum)  DESC LIMIT 10;
+CREATE VIEW top AS SELECT DISTINCT Idea_id, COUNT(VoteEnum) as Nb_votesTotal FROM vote WHERE VoteEnum = 1 GROUP BY Idea_id ORDER BY COUNT(VoteEnum) DESC LIMIT 10;
+CREATE VIEW brains AS SELECT DISTINCT Member_id, count(idea_id) as NB_Idees FROM idea i GROUP BY member_id;

@@ -3,6 +3,7 @@ package com.cgi.model;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Idea {
 	@JoinColumn(name = "MEMBER_ID")
 	protected Member member;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "CAT_ID")
 	protected Category category;
 

@@ -22,6 +22,13 @@ public class TopDao {
 		
 		return em.createQuery("from TopView t").getResultList();
 	}
+	public List<TopView> topRanking(Integer id) {
+		
+		
+		return em.createQuery("SELECT DISTINCT Idea_id from TopView t where idea8id =").getResultList();
+	}
+	
+	
 	
 
 }

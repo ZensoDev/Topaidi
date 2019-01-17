@@ -10,10 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import com.cgi.model.Idea;
 import com.cgi.model.Vote;
+import com.cgi.model.TopView;
+
 
 @Repository
 @Transactional
-public class VoteDaoImpl implements VoteDao{
+public class VoteDaoImpl {
 	
 	@PersistenceContext
 	EntityManager em;
@@ -22,7 +24,6 @@ public class VoteDaoImpl implements VoteDao{
 	 * Method to create one vote and save it in the database
 	 * */
 	
-	@Override
 	public void insert(Vote obj) 	{
 		em.persist(obj);
 		
@@ -46,37 +47,9 @@ public class VoteDaoImpl implements VoteDao{
 		return em.createQuery("select b from buzz b").getResultList();
 	}
 
-
-@Override
-public Vote findByKey(Integer key) {
-	// TODO Auto-generated method stub
-	return null;
-}
+		public List<Vote> findAll() {
+		return em.createQuery("select v from Vote v").getResultList();
+	}
 
 
-@Override
-public void update(Vote obj) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-@Override
-public void delete(Vote obj) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-@Override
-public void deleteByKey(Integer key) {
-	// TODO Auto-generated method stub
-	
-}
-
-@Override
-public List<Vote> findAll() {
-	// TODO Auto-generated method stub
-	return null;
-}
 }
