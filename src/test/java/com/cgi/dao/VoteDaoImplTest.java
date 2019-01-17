@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cgi.model.Category;
 import com.cgi.model.Vote;
 
 public class VoteDaoImplTest {
@@ -17,7 +16,7 @@ public class VoteDaoImplTest {
 	Vote voteTest;
 	Vote voteTest2;
 	Vote voteTest3;
-	
+
 	/**
 	 * Creation of instance to avoid database problem
 	 */
@@ -27,7 +26,7 @@ public class VoteDaoImplTest {
 		voteTest = new Vote();
 		//voir comment appeler la vue
 	}
-	
+
 	@Test
 	public void testInsert() {
 		fail("Not yet implemented");
@@ -43,4 +42,6 @@ public class VoteDaoImplTest {
 		fail("Not yet implemented");
 	}
 
+
 }
+

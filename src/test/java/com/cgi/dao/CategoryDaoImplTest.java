@@ -83,19 +83,27 @@ public class CategoryDaoImplTest {
 		assertTrue(cDao.findByKey(catTest2.getIdCat()).getName().equals("New Name"));
 	}
 
+	/**
+	 * Method to test Delete() Method
+	 */
 	@Test
 	public void testDelete() {
 		cDao.insert(categoryTest);
 		cDao.delete(categoryTest);
 		assertNull(cDao.findByKey(categoryTest.getIdCat()));
 	}
-	
+
+	/**
+	 * Method to test DeleteByKey() Method
+	 */
 	@Test
 	public void testDeleteByKey() {
 		cDao.insert(catTest2);
 		cDao.deleteByKey(catTest2.getIdCat());
 		assertNull(cDao.findByKey(catTest2.getIdCat()));
+
 		
 	}
 
 }
+
