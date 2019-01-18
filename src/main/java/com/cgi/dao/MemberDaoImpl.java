@@ -52,7 +52,43 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public Member findByMail(String loginMail) {
-		return em.find(Member.class, loginMail);
+	public Member findByMail(String login) {
+		
+		Member member = new Member();
+		member = (Member) em.createQuery("SELECT m FROM Member m WHERE m.loginMail = :login")
+				.setParameter("login", login)
+				.getSingleResult();
+		
+		return member;
+	}
+
+	@Override
+	public boolean existingMail(String login) {
+		boolean result = true;
+		if (findByMail(login) == null) {
+			result=false;
+		}
+		return result;
+	}
+	
+	@Override
+	public Member findByMailPwd(String login, String password) {
+		
+		Member member = new Member();
+		member = (Member) em.createQuery("SELECT m FROM Member m WHERE m.loginMail = :login AND m.password = :password")
+				.setParameter("login", login)
+				.setParameter("password", password)
+				.getSingleResult();
+		
+		return member;
+	}
+
+	@Override
+	public boolean existingMailPwd(String login, String password) {
+		boolean result = true;
+		if (findByMailPwd(login, password) == null) {
+			result=false;
+		}
+		return result;
 	}
 }
