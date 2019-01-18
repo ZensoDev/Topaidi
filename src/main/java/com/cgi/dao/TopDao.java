@@ -10,7 +10,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.cgi.model.Idea;
-import com.cgi.model.TopView;
 
 
 @Repository

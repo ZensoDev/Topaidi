@@ -19,15 +19,15 @@ public class Comment {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	protected int idCom;
+	private int idCom;
 	
 	@ManyToOne
 	@JoinColumn(name="IDEA_ID")
-	protected Idea idea;
+	private Idea idea;
 	
 	@ManyToOne
 	@JoinColumn(name="MEMBER_ID")
-	protected Member member;
+	private Member member;
 	
 	@ManyToMany
 	@JoinTable( name="COMMENT_MEMBER",
@@ -36,8 +36,8 @@ public class Comment {
 	private Collection<Member> members;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	protected Date date;
-	protected String text;
+	private Date date;
+	private String text;
 	
 	
 	

@@ -12,8 +12,8 @@ import javax.persistence.OneToMany;
 public class Category {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	protected int idCat;
-	protected String name;
+	private int idCat;
+	private String name;
 	
 	@OneToMany(mappedBy="category")
 	private Collection<Idea> ideas;

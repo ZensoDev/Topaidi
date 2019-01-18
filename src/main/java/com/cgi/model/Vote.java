@@ -14,18 +14,18 @@ import com.cgi.enumeration.VoteEnum;
 public class Vote {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	protected int idVote;
+	private int idVote;
 	
-	protected VoteEnum voteEnum;
+	private VoteEnum voteEnum;
 	
 	@ManyToOne
 	@JoinColumn(name = "MEMBER_ID")
-	protected Member member;
+	private Member member;
 	
 	
 	@ManyToOne
 	@JoinColumn(name = "IDEA_ID")
-	protected Idea idea;
+	private Idea idea;
 
 
 	public Vote(VoteEnum voteEnum, Member member, Idea idea) {

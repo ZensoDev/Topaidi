@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.cgi.model.Idea;
 import com.cgi.model.Vote;
-import com.cgi.model.TopView;
 
 
 @Repository
