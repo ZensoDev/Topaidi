@@ -55,11 +55,15 @@ public class MemberDaoImpl implements MemberDao{
 	public Member findByMail(String login) {
 		
 		Member member = new Member();
-		member = (Member) em.createQuery("SELECT m FROM Member m WHERE m.loginMail = :login")
+		List<Member> memberList =  em.createQuery("SELECT m FROM Member m WHERE m.loginMail = :login")
 				.setParameter("login", login)
-				.getSingleResult();
+				.getResultList();
 		
-		return member;
+		if(memberList.isEmpty()) {
+			return null;
+		}else {
+			return memberList.get(0);
+		}
 	}
 
 	@Override

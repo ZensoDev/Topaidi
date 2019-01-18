@@ -23,7 +23,7 @@ public class Idea {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int idIdea;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "MEMBER_ID")
 	protected Member member;
 
