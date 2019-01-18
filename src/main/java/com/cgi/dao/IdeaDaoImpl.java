@@ -55,14 +55,14 @@ public class IdeaDaoImpl implements IdeaDao{
 		
 	}
 
-	public int percentage(Idea obj) {
-		TopDao tdao = new TopDao();
-		BuzzDao bDao = new BuzzDao();
-		Idea idea =new Idea();
-		int p1 = tdao.topRanking(idea.getIdIdea()).size()/idea.getVotes().size();
-		
-		return p1;
-	}
+//	public int percentage(Idea obj) {
+//		TopDao tdao = new TopDao();
+//		BuzzDao bDao = new BuzzDao();
+//		Idea idea =new Idea();
+//		int p1 = tdao.topRanking(idea.getIdIdea()).size()/idea.getVotes().size();
+//		
+//		return p1;
+//	}
 	
 	public void ranking() {
 		
