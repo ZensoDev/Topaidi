@@ -14,7 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cgi.config.JpaConfig;
-import com.cgi.model.TopView;
 import com.cgi.model.Vote;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,8 +29,6 @@ public class VoteDaoImplTest {
 	Vote vote2;
 	Vote vote3;
 	
-	@Autowired
-	TopView topView;
 
 	/**
 	 * Creation of instance to avoid database problem

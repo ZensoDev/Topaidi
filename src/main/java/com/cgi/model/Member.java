@@ -13,12 +13,13 @@ import javax.persistence.OneToMany;
 public class Member {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	protected int idMember;
-	protected String loginMail;
-	protected String password;
-	protected String lastName;
-	protected String firstName;
-	protected boolean admin;
+	private int idMember;
+	private String loginMail;
+	private String password;
+	private String lastName;
+	private String firstName;
+	private boolean admin;
+	private boolean state;
 	
 	@OneToMany(mappedBy="member", fetch=FetchType.EAGER)
 	private Collection<Idea> ideas;
@@ -27,10 +28,10 @@ public class Member {
 	private Collection<Comment> comments;
 	
 	@OneToMany(mappedBy = "member")
-	protected Collection<Vote> votes;
+	private Collection<Vote> votes;
 	
 
-	public Member(int idMember, String loginMail, String password, String lastName, String firstName, boolean admin,
+	public Member(int idMember, String loginMail, String password, String lastName, String firstName, boolean admin, boolean state,
 			Collection<Idea> ideas, Collection<Comment> comments, Collection<Vote> votes) {
 		super();
 		this.idMember = idMember;
@@ -39,6 +40,7 @@ public class Member {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.admin = admin;
+		this.state = state;
 		this.ideas = ideas;
 		this.comments = comments;
 		this.votes = votes;
@@ -60,8 +62,8 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [idMember=" + idMember + ", loginMail=" + loginMail + ", password=" + password + ", lastName="
-				+ lastName + ", firstName=" + firstName + ", admin=" + admin + ", ideas=" + ideas + ", comments="
-				+ comments + "]";
+				+ lastName + ", firstName=" + firstName + ", admin=" + admin + ", state=" + state + ", ideas=" + ideas
+				+ ", comments=" + comments + ", votes=" + votes + "]";
 	}
 
 	public void displayMember() {
@@ -142,6 +144,14 @@ public class Member {
 
 	public void setVotes(Collection<Vote> votes) {
 		this.votes = votes;
+	}
+
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
 	}
 
 

@@ -21,15 +21,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Idea {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected int idIdea;
+	private int idIdea;
 
 	@ManyToOne
 	@JoinColumn(name = "MEMBER_ID")
-	protected Member member;
+	private Member member;
 
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "CAT_ID")
-	protected Category category;
+	private Category category;
 
 	@OneToMany(mappedBy = "idea", fetch=FetchType.EAGER)
 	private Collection<Comment> comments;
@@ -38,16 +38,16 @@ public class Idea {
 	@JoinTable(name = "IDEA_MEMBER", joinColumns = @JoinColumn(name = "IDEA_ID"), inverseJoinColumns = @JoinColumn(name = "MEMBER_ID"))
 	private Collection<Member> members;
 
-	protected String title;
-	protected String photo;
-	protected String description;
-	protected boolean state;
+	private String title;
+	private String photo;
+	private String description;
+	private boolean state;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	protected Date date;
+	private Date date;
 
 	@OneToMany(mappedBy = "idea")
-	protected Collection<Vote> votes;
+	private Collection<Vote> votes;
 
 	public Idea(int idIdea, Member member, Category category, Collection<Comment> comments, String title, String photo,
 			String description, boolean state, Date date, Collection<Vote> votes) {
