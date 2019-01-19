@@ -51,6 +51,7 @@ public class MemberDaoImpl implements MemberDao{
 		em.remove(em.find(Member.class, key));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Member findByMail(String login) {
 		
@@ -94,6 +95,22 @@ public class MemberDaoImpl implements MemberDao{
 			result=false;
 		}
 		return result;
+	}
+
+	@Override
+	public void activate(Member member) {
+		// TODO Auto-generated method stub
+		em.createQuery("UPDATE member SET state = :state WHERE member.idmember = memberid")
+		.setParameter("state", "false")
+		.setParameter("memberid", member.getIdMember());
+	}
+
+	@Override
+	public void desactivate(Member member) {
+		// TODO Auto-generated method stub
+		em.createQuery("UPDATE member SET state = :state WHERE member.idmember = memberid")
+		.setParameter("state", "true")
+		.setParameter("memberid", member.getIdMember());
 	}
 	
 }
