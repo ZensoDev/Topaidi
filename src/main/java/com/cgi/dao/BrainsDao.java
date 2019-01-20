@@ -1,7 +1,6 @@
 package com.cgi.dao;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +11,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.cgi.model.BrainsView;
 import com.cgi.model.Member;
 
 
