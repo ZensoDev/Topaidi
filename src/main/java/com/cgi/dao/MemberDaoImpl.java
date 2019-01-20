@@ -113,4 +113,31 @@ public class MemberDaoImpl implements MemberDao{
 		.setParameter("memberid", member.getIdMember());
 	}
 	
+	@Override
+	public void activateAdmin(Member member) {
+		// TODO Auto-generated method stub
+		em.createQuery("UPDATE member SET admin = :admin WHERE member.idmember = memberid")
+		.setParameter("admin", "true")
+		.setParameter("memberid", member.getIdMember());
+	}
+
+	@Override
+	public void desactivateAdmin(Member member) {
+		// TODO Auto-generated method stub
+		em.createQuery("UPDATE member SET admin = :admin WHERE member.idmember = memberid")
+		.setParameter("admin", "false")
+		.setParameter("memberid", member.getIdMember());
+	}
+	
+	@Override
+	public Member findByMailMember(String login) {
+		
+		Member member = new Member();
+		member = (Member) em.createQuery("SELECT m FROM Member m WHERE m.loginMail = :login")
+				.setParameter("login", login)
+				.getSingleResult();
+		
+		return member;
+	}
+	
 }
