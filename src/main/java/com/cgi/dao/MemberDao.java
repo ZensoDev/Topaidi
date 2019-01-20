@@ -10,4 +10,7 @@ public interface MemberDao extends DAOGeneric<Member, Integer>{
 	boolean existingMailPwd(String login, String password);
 	void activate(Member member);
 	void desactivate(Member member);
+	void activateAdmin(Member member);
+	void desactivateAdmin(Member member);
+	Member findByMailMember(String login);
 }
