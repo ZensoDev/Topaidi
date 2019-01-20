@@ -23,11 +23,11 @@ public class Idea {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idIdea;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne
 	@JoinColumn(name = "MEMBER_ID")
 	private Member member;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne//(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "CAT_ID")
 	private Category category;
 

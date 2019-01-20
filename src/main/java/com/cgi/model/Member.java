@@ -24,7 +24,7 @@ public class Member {
 	@OneToMany(mappedBy="member", fetch=FetchType.EAGER)
 	private Collection<Idea> ideas;
 	
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member", fetch=FetchType.EAGER)
 	private Collection<Comment> comments;
 	
 	@OneToMany(mappedBy = "member")
